@@ -10,22 +10,35 @@
     </meta>
     <title>Amazon 2.0</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    </link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+    <script src="./firebase.js"></script>
+    <script src="./header.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async
         integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous">
         </script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    </link>
+    <script src="./cart.js"></script>
 </head>
 
 <body>
     <div class="bg-white w-full">
         <div class="header h-16 bg-gray-900 flex items-center">
             <div class="logo w-1/5 h-16 ml-10">
-                <img class="w-28 h-16 object-contain"
-                    src="https://www.pinclipart.com/picdir/big/57-576184_view-our-amazon-storefront-amazon-logo-white-png.png"
-                    alt="Amazon" />
+                <a href="./index.html">
+                    <img class="w-28 h-16 object-contain"
+                        src="https://www.pinclipart.com/picdir/big/57-576184_view-our-amazon-storefront-amazon-logo-white-png.png"
+                        alt="Amazon" />
+                </a>
             </div>
             <input
                 class="h-9 w-30 bg-gray-800 border border-gray-500 border-opacity-75 rounded-l-xl px-3 text-white ml-6 focus:outline-none placeholder-white"
@@ -52,7 +65,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
-                <div class="cart-icon h-10 w-10 bg-yellow-500 flex items-center justify-center rounded-xl text-sm">
+                <!--Cart Icons-->
+                <div
+                    class="relative cart-icon h-10 w-10 bg-yellow-500 flex items-center justify-center rounded-xl text-sm">
+                    <div
+                        class="cart-item-number absolute -top-1 -right-1 h-4 w-4 bg-white rounded-full flex justify-center items-center text-gray-800 text-xs">
+                    </div>
                     <svg class="h-4 w-4 text-gray-800" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -69,7 +87,7 @@
         </div>
 
         <div class="main h-screen flex">
-            <div class="main-sidebar w-1/5 bg-gray-900 border-t-2 border-gray-700 p-6">
+            <div class="hidden md:block main-sidebar w-1/5 bg-gray-900 border-t-2 border-gray-700 p-6">
                 <div class="sidebar-categories">
                     <div
                         class="sidebar-main-category text-yellow-500 cursor-pointer flex font-bold mb-4 p-2 bg-gray-700 rounded-lg">
@@ -127,64 +145,8 @@
                     <h2 class="w-48">Total Cost</h2>
                     <span class="w-10"></span>
                 </div>
-                <div class="cart-items mt-5">
-                    <div class="cart-item flex items-center pb-4 border-b border-gray-100">
-                        <div class="cart-item-image w-48 h-24 bg-white p-4 rounded-lg">
-                            <img class="w-full h-full object-contain"
-                                src="https://m.media-amazon.com/images/I/71an9eiBxpL._AC_SX342_.jpg" />
-                        </div>
-                        <div class="cart-item-details flex-grow">
-                            <div class="cart-item-title font-bold text-sm text-gray-600">Apple MacBook Pro 13, 3</div>
-                            <div class="cart-item-brand text-sm text-gray-400">Apple</div>
-                        </div>
-                        <div class="cart-item-counter w-48 flex items-center">
-                            <div
-                                class="chevron-left cursor-pointer text-gray-400 bg-gray-100 rounded h-6 w-6 flex justify-center items-center hover:bg-gray-200 mr-2">
-                                <i class="fas fa-chevron-left fa-xs"></i>
-                            </div>
-                            <h4 class="text-gray-400">x1</h4>
-                            <div
-                                class="chevron-right cursor-pointer text-gray-400 bg-gray-100 rounded h-6 w-6 flex justify-center items-center hover:bg-gray-200 ml-2">
-                                <i class="fas fa-chevron-right fa-xs"></i>
-                            </div>
-                        </div>
-                        <div class="cart-item-total-cost w-48 font-bold text-gray-400">
-                            $ 1149.00
-                        </div>
-                        <div class="cart-item-delete w-10 font-bold text-gray-300 cursor-pointer hover:text-gray-400">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-
-                    <div class="cart-item flex items-center pb-4 border-b border-gray-100">
-                        <div class="cart-item-image w-48 h-24 bg-white p-4 rounded-lg">
-                            <img class="w-full h-full object-contain"
-                                src="https://m.media-amazon.com/images/I/61-PblYntsL._AC_SL1500_.jpg" />
-                        </div>
-                        <div class="cart-item-details flex-grow">
-                            <div class="cart-item-title font-bold text-sm text-gray-600">Nintendo Switch (2019)</div>
-                            <div class="cart-item-brand text-sm text-gray-400">Nintendo</div>
-                        </div>
-                        <div class="cart-item-counter w-48 flex items-center">
-                            <div
-                                class="chevron-left cursor-pointer text-gray-400 bg-gray-100 rounded h-6 w-6 flex justify-center items-center hover:bg-gray-200 mr-2">
-                                <i class="fas fa-chevron-left fa-xs"></i>
-                            </div>
-                            <h4 class="text-gray-400">x1</h4>
-                            <div
-                                class="chevron-right cursor-pointer text-gray-400 bg-gray-100 rounded h-6 w-6 flex justify-center items-center hover:bg-gray-200 ml-2">
-                                <i class="fas fa-chevron-right fa-xs"></i>
-                            </div>
-                        </div>
-                        <div class="cart-item-total-cost w-48 font-bold text-gray-400">
-                            $ 290.00
-                        </div>
-                        <div class="cart-item-delete w-10 font-bold text-gray-300 cursor-pointer hover:text-gray-400">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                </div>
-
+                <div class="cart-items mt-5"></div>
+                <!--Cart Items from DB-->
                 <div class="complete-order flex justify-end mt-10">
                     <div class="total-cost mr-7">
                         <h2 class="text-gray-400">Total Cost</h2>
