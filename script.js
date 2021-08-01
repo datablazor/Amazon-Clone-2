@@ -3,14 +3,14 @@ function getItems() {
     .get()
     .then((querySnapshot) => {
       let items = [];
-      querySnapshot.forEach((e) => {
+      querySnapshot.forEach((item) => {
         items.push({
-          id: e.id,
-          image: e.data().image,
-          name: e.data().name,
-          make: e.data().make,
-          rating: e.data().rating,
-          price: e.data().price,
+          id: item.id,
+          image: item.data().image,
+          name: item.data().name,
+          make: item.data().make,
+          rating: item.data().rating,
+          price: item.data().price,
         });
       });
       generateItems(items);

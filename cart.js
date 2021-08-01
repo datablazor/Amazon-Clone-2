@@ -73,14 +73,14 @@ function generateCartItems(cartItems) {
                 data-id="${
                   item.id
                 }" class="cart-item-decrease cursor-pointer text-gray-400 bg-gray-100 rounded h-6 w-6 flex justify-center items-center hover:bg-gray-200 mr-2">
-                <i class="fas fa-chevron-left fa-xs"></i>
-            </div>
+                <i class="fas fa-minus"></i>
+                </div>
             <h4 class="text-gray-400">x${item.quantity}</h4>
             <div
             data-id="${
               item.id
             }" class="cart-item-increase cursor-pointer text-gray-400 bg-gray-100 rounded h-6 w-6 flex justify-center items-center hover:bg-gray-200 ml-2">
-                <i class="fas fa-chevron-right fa-xs"></i>
+            <i class="fas fa-plus"></i>
             </div>
         </div>
         <div class="cart-item-total-cost w-48 font-bold text-gray-400">
@@ -100,7 +100,7 @@ function generateCartItems(cartItems) {
 
 function createEventListeners() {
   let decreaseButtons = document.querySelectorAll(".cart-item-decrease");
-  let increaseButtons = document.querySelectorAll("..cart-item-increase");
+  let increaseButtons = document.querySelectorAll(".cart-item-increase");
   let deleteButtons = document.querySelectorAll(".cart-item-delete");
 
   decreaseButtons.forEach((button) => {
@@ -115,7 +115,7 @@ function createEventListeners() {
     });
   });
 
-  decreaseButtons.forEach((button) => {
+  deleteButtons.forEach((button) => {
     button.addEventListener("click", function () {
       deleteItem(button.dataset.id);
     });

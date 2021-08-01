@@ -5,13 +5,10 @@ function getCartItems() {
       totalCount += doc.data().quantity;
     });
     setCartCounter(totalCount);
+    getCartItems();
   });
-
-  onSnapshot();
 }
 
 function setCartCounter(totalCount) {
   document.querySelector(".cart-item-number").innerText = totalCount;
 }
-
-getCartItems();
