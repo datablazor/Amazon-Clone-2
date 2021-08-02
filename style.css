@@ -3,3 +3,16 @@
     background-position: center;
     background-size: cover;
 }
+
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #111827;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #F59E0B;
+    border-radius: 12px;
+}
