@@ -56,7 +56,7 @@ function generateCartItems(cartItems) {
   cartItems.forEach((item) => {
     itemsHTML += `
       <div class="cart-item flex items-center pb-4 border-b border-gray-100">
-        <div class="cart-item-image w-48 h-24 bg-white p-4 rounded-lg">
+        <div class="cart-item-image w-40 h-24 bg-white p-4 rounded-lg">
             <img class="w-full h-full object-contain"
                 src="${item.image}" />
         </div>

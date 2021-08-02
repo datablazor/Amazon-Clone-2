@@ -3,14 +3,14 @@ function getItems() {
     .get()
     .then((querySnapshot) => {
       let items = [];
-      querySnapshot.forEach((item) => {
+      querySnapshot.forEach((doc) => {
         items.push({
-          id: item.id,
-          image: item.data().image,
-          name: item.data().name,
-          make: item.data().make,
-          rating: item.data().rating,
-          price: item.data().price,
+          id: doc.id,
+          image: doc.data().image,
+          name: doc.data().name,
+          make: doc.data().make,
+          rating: doc.data().rating,
+          price: doc.data().price,
         });
       });
       generateItems(items);
@@ -18,7 +18,7 @@ function getItems() {
 }
 
 function addToCart(item) {
-  let cartItem = db.collection("cart-item").doc(item.id);
+  let cartItem = db.collection("cart-items").doc(item.id);
   cartItem.get().then(function (doc) {
     if (doc.exists) {
       cartItem.update({
@@ -38,6 +38,7 @@ function addToCart(item) {
 }
 
 function generateItems(items) {
+  let itemsHTML = "";
   items.forEach((item) => {
     let doc = document.createElement("div");
     doc.classList.add("main-product", "mr-5");
@@ -64,7 +65,7 @@ function generateItems(items) {
     let addToCartEl = document.createElement("div");
     addToCartEl.classList.add(
       "hover:bg-yellow-600",
-      "add-to-cart",
+      "product-add",
       "h-8",
       "mt-2",
       "w-28",
