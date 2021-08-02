@@ -75,7 +75,7 @@ function generateCartItems(cartItems) {
                 }" class="cart-item-decrease cursor-pointer text-gray-400 bg-gray-100 rounded h-6 w-6 flex justify-center items-center hover:bg-gray-200 mr-2">
                 <i class="fas fa-minus"></i>
                 </div>
-            <h4 class="text-gray-400">x${item.quantity}</h4>
+            <h4 class="text-gray-400">x ${item.quantity}</h4>
             <div
             data-id="${
               item.id
